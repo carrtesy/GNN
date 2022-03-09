@@ -13,19 +13,19 @@ python main.py --dataset cora
 ## Dataset
 For now, most of the dataset pipeline is from: https://github.com/tkipf/gcn
 
-- Cora
-- Citeseer
-- Pubmed
+- citeseer [[explaination]](https://linqs.soe.ucsc.edu/data) [[rawdata]](./data/citeseer)
+- cora [[explaination]](https://relational.fit.cvut.cz/dataset/CORA) [[rawdata]](./data/cora)
+- pubmed [[explaination]](https://linqs.soe.ucsc.edu/data) [[rawdata]](./data/pubmed)
 - NELL (To be updated)
 
 ## Architectures
-- GCN
+- GCN: Kipf, T. N., & Welling, M. (2017). Semi-Supervised Classification with Graph Convolutional Networks. International Conference on Learning Representations (ICLR).
 
 ## Experiments
-
+Numbers in parenthesis states results from original paper.
 | Method     | Citeseer | Cora | Pubmed | NELL |
 |------------|----------|------|--------|------|
-| GCN (Kipf) | 68.9     | 80.79| 78.9   |      |
+| GCN [Kipf & Welling] | 68.9 (70.3)    | 80.79 (81.5)| 78.9 (79.0)  |      |
 
 ### Details
 GCN(Kipf) 
