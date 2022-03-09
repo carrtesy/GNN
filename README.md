@@ -14,8 +14,8 @@ python main.py --dataset cora
 For now, most of the dataset pipeline is from: https://github.com/tkipf/gcn
 
 - Cora
-- Citeseer (To be updated)
-- Pubmed (To be updated)
+- Citeseer
+- Pubmed
 - NELL (To be updated)
 
 ## Architectures
