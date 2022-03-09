@@ -4,6 +4,7 @@ import torch.nn.functional as F
 import argparse
 
 from models.gcn import GCN
+from models.gat import GAT
 from data.utils import load_data
 
 from metrics import masked_accuracy, masked_softmax_cross_entropy
@@ -26,8 +27,14 @@ IN_FEATURES = features.shape[1]
 OUT_FEATURES = y_train.shape[1]
 
 # 3. prepare model
-model = GCN(adj, in_features=IN_FEATURES, out_features=OUT_FEATURES)
+#model = GCN(adj, in_features=IN_FEATURES, out_features=OUT_FEATURES)
+#model.to(args.device)
+
+model = GAT(in_features=IN_FEATURES, out_features=OUT_FEATURES, hidden_dim = 8, num_nodes = NUM_NODES)
 model.to(args.device)
+#gat = GATLayer(in_features=IN_FEATURES, out_features=OUT_FEATURES, num_nodes=NUM_NODES)
+#gat(features)
+
 
 optimizer = torch.optim.Adam(model.parameters(), lr = 1e-02, weight_decay=5e-4)
 loss_fn = masked_softmax_cross_entropy
@@ -36,7 +43,7 @@ loss_fn = masked_softmax_cross_entropy
 EPOCH = 100
 for e in range(EPOCH):
     model.train()
-    X, y = features, y_train
+    X, y = features.to(args.device), y_train.to(args.device)
     y_hat = model(X)
 
     optimizer.zero_grad()
@@ -46,7 +53,7 @@ for e in range(EPOCH):
 
     model.eval()
     with torch.no_grad():
-        X, y = features, y_val
+        X, y = features.to(args.device), y_val.to(args.device)
         y_hat = model(X)
         val_loss = loss_fn(y_hat, y, val_mask)
 
@@ -59,7 +66,7 @@ for e in range(EPOCH):
 # 5. test
 model.eval()
 with torch.no_grad():
-    X, y = features, y_test
+    X, y = features.to(args.device), y_test.to(args.device)
     y_hat = model(X)
     test_loss = loss_fn(y_hat, y, test_mask)
 
