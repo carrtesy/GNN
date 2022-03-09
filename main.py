@@ -19,7 +19,6 @@ args.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 adj, features, y_train, y_val, y_test, train_mask, val_mask, test_mask = load_data(args.dataset)
 
 features = torch.Tensor(features.toarray())
-#X_train, X_val, X_test = features * train_mask.reshape(-1, 1), features * val_mask.reshape(-1, 1), features * test_mask.reshape(-1, 1)
 y_train, y_val, y_test = torch.Tensor(y_train), torch.Tensor(y_val), torch.Tensor(y_test)
 
 NUM_NODES = adj.shape[0]
