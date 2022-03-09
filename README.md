@@ -1,6 +1,15 @@
 # GNN
 This repo reimplements graph neural network architectures.
 
+## Quickstart
+```
+python main.py --dataset {dataset_name}
+```
+for example,
+```
+python main.py --dataset cora
+```
+
 ## Dataset
 For now, most of the dataset pipeline is from: https://github.com/tkipf/gcn
 
